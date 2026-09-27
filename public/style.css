@@ -1,0 +1,89 @@
+/* ==============================================
+   style.css
+   Дополнительные стили поверх Tailwind CSS
+   (кастомные анимации, шрифты, мелкие детали,
+   которые неудобно выражать только утилитами)
+   ============================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --color-beige: #FAEDCD;
+  --color-cream: #FFF8ED;
+  --color-plum: #3A1C5C;
+  --color-pink: #F7CAD0;
+  --color-pink-dark: #E8A6B4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--color-cream);
+  color: #3A2E2E;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Плавное появление модальных окон */
+.modal-backdrop {
+  transition: opacity 0.25s ease;
+}
+.modal-panel {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.modal-hidden .modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+}
+.modal-hidden .modal-panel {
+  transform: translateY(24px) scale(0.98);
+  opacity: 0;
+}
+
+/* Карточка товара — лёгкий подъём при наведении */
+.product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -15px rgba(58, 28, 92, 0.25);
+}
+
+/* Кнопка-таб фильтра */
+.filter-tab {
+  transition: all 0.2s ease;
+}
+.filter-tab.active {
+  background-color: var(--color-plum);
+  color: white;
+}
+
+/* Скрытие нативного скролла в галерее для более чистого вида (сохраняя функциональность) */
+.gallery-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-pink-dark);
+  border-radius: 999px;
+}
+
+/* Значок счётчика корзины */
+.cart-badge {
+  transform: translate(35%, -35%);
+}
+
+/* Анимация появления секций при скролле */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
